@@ -1,0 +1,5 @@
+PubkeyAuthentication yes
+
+AuthorizedKeysCommand /usr/bin/simple-git-server authorized-keys %u
+AuthorizedKeysCommandUser admin
+PasswordAuthentication no
