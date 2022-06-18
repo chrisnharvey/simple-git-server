@@ -26,7 +26,7 @@ func CreateRepo() *cobra.Command {
 
 func createRepoCommand(cmd *cobra.Command, args []string) {
 	for _, v := range args {
-		if _, err := os.Stat("/repos/" + v); err == nil {
+		if _, err := os.Stat("/git/repos/" + v); err == nil {
 			fmt.Println(errors.New(v + " already exists"))
 		}
 	}
@@ -44,17 +44,17 @@ func createRepoCommand(cmd *cobra.Command, args []string) {
 }
 
 func createRepo(n string) error {
-	err := runCommand("sudo", "mkdir", "/repos/"+n)
+	err := runCommand("sudo", "mkdir", "/git/repos/"+n)
 	if err != nil {
 		return err
 	}
 
-	err = runCommand("sudo", "git", "init", "--bare", "/repos/"+n)
+	err = runCommand("sudo", "git", "init", "--bare", "/git/repos/"+n)
 	if err != nil {
 		return err
 	}
 
-	err = runCommand("sudo", "chown", "git:git", "-R", "/repos/"+n)
+	err = runCommand("sudo", "chown", "git:git", "-R", "/git/repos/"+n)
 	if err != nil {
 		return err
 	}
