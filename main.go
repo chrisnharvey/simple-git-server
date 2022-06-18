@@ -11,15 +11,20 @@ import (
 )
 
 func main() {
-	cobra := &cobra.Command{}
+	cobra := &cobra.Command{
+		Run: func(cmd *cobra.Command, args []string) {
+			shell := shell.New(cmd)
+
+			err := shell.Execute()
+
+			if err != nil {
+				fmt.Println(err)
+			}
+		},
+	}
 
 	cobra.AddCommand(cmd.CreateRepo())
+	cobra.AddCommand(cmd.AuthorizedKeys())
 
-	shell := shell.New(cobra)
-
-	err := shell.Execute()
-
-	if err != nil {
-		fmt.Println(err)
-	}
+	cobra.Execute()
 }
