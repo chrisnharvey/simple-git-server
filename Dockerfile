@@ -13,7 +13,7 @@ COPY etc/ /etc
 RUN apk add openssh git sudo && \
     mkdir -p /git/repos && \
     adduser admin --disabled-password --shell /usr/bin/simple-git-server --home /git && \
-    adduser git --disabled-password --shell /sbin/nologin --home /git/repos && \
+    adduser git --disabled-password --shell /usr/bin/git-shell --home /git/repos && \
     passwd -u admin && \
     passwd -u git
 

@@ -1,3 +1,0 @@
-This user does not have shell access.
-
-Login as "admin" for a shell.
